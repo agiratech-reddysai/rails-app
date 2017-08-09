@@ -9,7 +9,7 @@
 
 mysql_service 'foo' do
   port '3306'
-  version '5.5'
+  version '5.7'
   initial_root_password 'root'
   action [:create, :start]
 end
