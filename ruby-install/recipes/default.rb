@@ -10,10 +10,10 @@
 bash 'install_ruby' do
   code <<-EOH
     cd /opt
-    wget http://ftp.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.gz
-    tar -xzvf ruby-2.4.0.tar.gz
-    rm ruby-2.4.0.tar.gz
-    cd ruby-2.4.0/
+    wget http://ftp.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.tar.gz
+    tar -xzvf ruby-2.4.1.tar.gz
+    rm ruby-2.4.1.tar.gz
+    cd ruby-2.4.1/
     ./configure
     make
     sudo make install
