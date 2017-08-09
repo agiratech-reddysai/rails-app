@@ -1,3 +1,4 @@
+package 'bzip2'
 include_recipe "ruby-install::default"
 
 attributes = node["ruby-install"]
