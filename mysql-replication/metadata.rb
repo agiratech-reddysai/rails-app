@@ -16,4 +16,4 @@ supports 'fedora'
 supports 'debian'
 supports 'ubuntu'
 
-depends 'mysql'
+depends 'mysql', '~> 6.1.3'
