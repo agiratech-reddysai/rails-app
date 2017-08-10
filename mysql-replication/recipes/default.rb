@@ -15,11 +15,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+# Configure the MySQL client.
+include_recipe 'yum-mysql-community::mysql55'
+
+mysql_client 'default' do
+  version '5.5'
+  action :create
+end
+
+# Configure the MySQL service
 mysql_service 'default' do
-  version '5.7'
-  bind_address '0.0.0.0'
-  port '3306'
-  data_dir '/data'
-  initial_root_password 'Ch4ng3me'
+  version '5.5'
+  initial_root_password 'root'
   action [:create, :start]
 end
