@@ -2,7 +2,7 @@ module MysqlCookbook
   class MysqlClientInstallationPackage < MysqlBase
     # helper methods
     require_relative 'helpers'
-    include MysqlCookbook::HelpersBase
+    # include MysqlCookbook::HelpersBase
 
     # Resource properties
     resource_name :mysql_client_installation_package
