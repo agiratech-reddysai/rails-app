@@ -18,6 +18,6 @@
 apt_update 'update'
 
 mysql_client_installation_package 'default' do
-  version node['mysql']['version']
+  version '5.7'
   action :create
 end
