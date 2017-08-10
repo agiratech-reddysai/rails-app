@@ -18,7 +18,7 @@
 #
 
 default['mysql']['bind_address']              = attribute?('cloud') ? cloud['local_ipv4'] : ipaddress
-default['mysql']['version']                   = 5.7.19
+default['mysql']['version']                   = "5.7.19"
 
 case node["platform"]
 when "centos", "redhat", "fedora", "suse", "scientific", "amazon"
