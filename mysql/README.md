@@ -2,15 +2,16 @@
 
 [![Build Status](https://travis-ci.org/chef-cookbooks/mysql.svg?branch=master)](https://travis-ci.org/chef-cookbooks/mysql) [![Cookbook Version](https://img.shields.io/cookbook/v/mysql.svg)](https://supermarket.chef.io/cookbooks/mysql)
 
-The MySQL Cookbook is a library cookbook that provides resource primitives (LWRPs) for use in recipes. It is designed to be a reference example for creating highly reusable cross-platform cookbooks.
+The Mysql Cookbook is a library cookbook that provides resource primitives (LWRPs) for use in recipes. It is designed to be a reference example for creating highly reusable cross-platform cookbooks.
 
 ## Scope
 
-This cookbook is concerned with the "MySQL Community Server", particularly those shipped with F/OSS Unix and Linux distributions. It does not address forks or value-added repackaged MySQL distributions like MariaDB or Percona.
+This cookbook is concerned with the "MySQL Community Server", particularly those shipped with F/OSS Unix and Linux distributions. It does not address forks or value-added repackaged MySQL distributions like Drizzle, MariaDB, or Percona.
 
 ## Requirements
 
-- Chef 12.5 or higher
+- Chef 11 or higher
+- Ruby 1.9 or higher (preferably from the Chef full-stack installer)
 - Network accessible package repositories
 - 'recipe[selinux::disabled]' on RHEL platforms
 
@@ -19,37 +20,42 @@ This cookbook is concerned with the "MySQL Community Server", particularly those
 The following platforms have been tested with Test Kitchen:
 
 ```
-|----------------+-----+-----+-----+-----|
-|                | 5.1 | 5.5 | 5.6 | 5.7 |
-|----------------+-----+-----+-----+-----|
-| debian-7       |     | X   |     |     |
-|----------------+-----+-----+-----+-----|
-| debian-8       |     | X   |     |     |
-|----------------+-----+-----+-----+-----|
-| ubuntu-14.04   |     | X   | X   |     |
-|----------------+-----+-----+-----+-----|
-| ubuntu-16.04   |     |     |     | X   |
-|----------------+-----+-----+-----+-----|
-| centos-6       | X   | X   | X   | X   |
-|----------------+-----+-----+-----+-----|
-| centos-7       |     | X   | X   | X   |
-|----------------+-----+-----+-----+-----|
-| fedora         |     |     | X   | X   |
-|----------------+-----+-----+-----+-----|
-| openSUSE Leap  |     |     | X   |     |
-|----------------+-----+-----+-----+-----|
+|----------------+-----+-----+-----+-----+-----|
+|                | 5.0 | 5.1 | 5.5 | 5.6 | 5.7 |
+|----------------+-----+-----+-----+-----+-----|
+| debian-7       |     |     | X   |     |     |
+|----------------+-----+-----+-----+-----+-----|
+| ubuntu-12.04   |     |     | X   |     |     |
+|----------------+-----+-----+-----+-----+-----|
+| ubuntu-14.04   |     |     | X   | X   |     |
+|----------------+-----+-----+-----+-----+-----|
+| ubuntu-15.04   |     |     |     | X   |     |
+|----------------+-----+-----+-----+-----+-----|
+| centos-5       |   X | X   | X   | X   | X   |
+|----------------+-----+-----+-----+-----+-----|
+| centos-6       |     | X   | X   | X   | X   |
+|----------------+-----+-----+-----+-----+-----|
+| centos-7       |     |     | X   | X   | X   |
+|----------------+-----+-----+-----+-----+-----|
+| amazon         |     |     | X   | X   | X   |
+|----------------+-----+-----+-----+-----+-----|
+| fedora-22      |     |     | X   | X   | X   |
+|----------------+-----+-----+-----+-----+-----|
+| fedora-23      |     |     | X   | X   | X   |
+|----------------+-----+-----+-----+-----+-----|
 ```
 
 ## Cookbook Dependencies
 
-There are no hard coupled dependencies. However, there is a loose dependency on `yum-mysql-community` for RHEL/CentOS platforms. As of the 8.0 version of this cookbook, configuration of the package repos is now the responsibility of the user.
+- yum-mysql-community
+- smf
 
 ## Usage
 
 Place a dependency on the mysql cookbook in your cookbook's metadata.rb
 
 ```ruby
-depends 'mysql', '~> 8.0'
+depends 'mysql', '~> 6.0'
 ```
 
 Then, in a recipe:
@@ -174,7 +180,7 @@ Please note that when using `notifies` or `subscribes`, the resource to referenc
 - `:create` - Configures everything but the underlying operating system service.
 - `:delete` - Removes everything but the package and data_dir.
 - `:start` - Starts the underlying operating system service
-- `:stop`- Stops the underlying operating system service
+- `:stop`-  Stops the underlying operating system service
 - `:restart` - Restarts the underlying operating system service
 - `:reload` - Reloads the underlying operating system service
 
@@ -268,7 +274,7 @@ mysql_client 'default' do
 end
 ```
 
-#### Properties
+#### Parameters
 
 - `package_name` - An array of packages to be installed. Defaults to a value looked up in an internal map.
 - `package_version` - Specific versions of the package to install, passed onto the underlying package manager. Defaults to `nil`.
@@ -395,16 +401,31 @@ Or to connect over the network, use something like this: connect over the networ
 
 These network or socket ssettings can also be put in you $HOME/.my.cnf, if preferred.
 
-### What about MariaDB, Percona, etc.
+### What about MariaDB, Percona, Drizzle, WebScaleSQL, etc.
 
 MySQL forks are purposefully out of scope for this cookbook. This is mostly to reduce the testing matrix to a manageable size. Cookbooks for these technologies can easily be created by copying and adapting this cookbook. However, there will be differences.
 
 Package repository locations, package version names, software major version numbers, supported platform matrices, and the availability of software such as XtraDB and Galera are the main reasons that creating multiple cookbooks to make sense.
 
-## License
+## Warnings
+
+## Hacking / Testing / TODO
+
+Please refer to the HACKING.md
+
+## License & Authors
+
+- Author:: Joshua Timberman ([joshua@chef.io](mailto:joshua@chef.io))
+- Author:: AJ Christensen ([aj@chef.io](mailto:aj@chef.io))
+- Author:: Seth Chisamore ([schisamo@chef.io](mailto:schisamo@chef.io))
+- Author:: Brian Bianco ([brian.bianco@gmail.com](mailto:brian.bianco@gmail.com))
+- Author:: Jesse Howarth ([him@jessehowarth.com](mailto:him@jessehowarth.com))
+- Author:: Andrew Crump ([andrew@kotirisoftware.com](mailto:andrew@kotirisoftware.com))
+- Author:: Christoph Hartmann ([chris@lollyrock.com](mailto:chris@lollyrock.com))
+- Author:: Sean OMeara ([sean@chef.io](mailto:sean@chef.io))
 
 ```text
-Copyright:: 2009-2017 Chef Software, Inc
+Copyright:: 2009-2014 Chef Software, Inc
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
