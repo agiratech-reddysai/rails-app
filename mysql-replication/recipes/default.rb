@@ -16,17 +16,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include_recipe 'yum-mysql-community::mysql57'
 # Configure the MySQL client.
-include_recipe 'yum-mysql-community::mysql55'
-
 mysql_client 'default' do
-  version '5.5'
+  version '5.7'
   action :create
 end
 
 # Configure the MySQL service
 mysql_service 'default' do
-  version '5.5'
+  version '5.7'
   initial_root_password 'root'
   action [:create, :start]
 end
