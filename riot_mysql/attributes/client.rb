@@ -20,7 +20,7 @@
 #
 
 default['mysql']['chef_gem_binary']          = nil
-default['mysql']['client']['version']        = "5.7"
+default['mysql']['client']['version']        = nil
 
 case node["platform"]
 when "windows"
