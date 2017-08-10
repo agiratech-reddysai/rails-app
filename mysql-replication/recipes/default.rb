@@ -15,9 +15,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-mysql_service 'foo' do
-  port '3306'
+mysql_service 'default' do
   version '5.7'
-  initial_root_password 'change_me'
+  bind_address '0.0.0.0'
+  port '3306'
+  data_dir '/data'
+  initial_root_password 'Ch4ng3me'
   action [:create, :start]
 end
