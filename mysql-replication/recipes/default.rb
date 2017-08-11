@@ -27,8 +27,6 @@ end
 mysql_service 'default' do
   version '5.7'
   bind_address '0.0.0.0'
-  run_group 'root'
-  run_user 'root'
   port '3306'
   initial_root_password 'root'
   action [:create, :start]
