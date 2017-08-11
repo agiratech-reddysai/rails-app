@@ -8,12 +8,12 @@ version           '2.7.6'
 recipe 'nginx',         'Installs nginx package and sets up configuration with Debian apache style with sites-enabled/sites-available'
 recipe 'nginx::source', 'Installs nginx from source and sets up configuration with Debian apache style with sites-enabled/sites-available'
 
-depends 'apt',
-depends 'bluepill',
-depends 'build-essential',
-depends 'ohai',
-depends 'runit',
-depends 'yum-epel',
+depends 'apt'
+depends 'bluepill'
+depends 'build-essential'
+depends 'ohai'
+depends 'runit'
+depends 'yum-epel'
 
 supports 'amazon'
 supports 'centos'
