@@ -19,3 +19,9 @@ bash 'install_ruby' do
     sudo make install
   EOH
 end
+
+bash 'bundler_install' do
+  code <<-EOH
+    gem install bundler
+  EOH
+end
