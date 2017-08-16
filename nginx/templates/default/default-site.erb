@@ -2,6 +2,10 @@ server {
   listen   <%= node['nginx']['port'] -%>;
   server_name  <%= node['hostname'] %>;
 
+  passenger_enabled on;
+  rails_env    production;
+  root <%= node['nginx']['current_path'] %>/public;
+
   access_log  <%= node['nginx']['log_dir'] %>/localhost.access.log;
 
   location / {

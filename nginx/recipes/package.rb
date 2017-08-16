@@ -49,4 +49,10 @@ service 'nginx' do
   action   :enable
 end
 
+bash 'current_path' do
+  code <<-EOH
+    mkdir -p #{node['nginx']['current_path']}
+  EOH
+end
+
 include_recipe 'nginx::commons'
