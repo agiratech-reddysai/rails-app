@@ -6,10 +6,5 @@ server {
   rails_env    production;
   root <%= node['nginx']['current_path'] %>/public;
 
-  access_log  <%= node['nginx']['log_dir'] %>/localhost.access.log;
-
-  location / {
-    root   <%= node['nginx']['default_root'] %>;
-    index  index.html index.htm;
-  }
+  access_log  <%= node['nginx']['log_dir'] %>/access.log;
 }
