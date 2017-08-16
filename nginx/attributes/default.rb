@@ -24,7 +24,7 @@
 # This attribute is in the source.rb file, though we recommend overriding
 # attributes by modifying a role, or the node itself.
 default['nginx']['version']      = '1.12.0'
-default['nginx']['package_name'] = 'nginx-extras'
+default['nginx']['package_name'] = 'nginx'
 default['nginx']['port']         = '80'
 default['nginx']['dir']          = '/etc/nginx'
 default['nginx']['script_dir']   = '/usr/sbin'
@@ -39,6 +39,8 @@ default['nginx']['pid'] = '/var/run/nginx.pid'
 case node['platform_family']
 when 'debian'
   default['nginx']['user']       = 'www-data'
+  default['nginx']['repo_source'] = 'passenger'
+  default['nginx']['package_name'] = 'nginx-extras'
   default['nginx']['init_style'] = 'runit'
   if platform == 'ubuntu' && platform_version == '14.04'
     default['nginx']['pid'] = '/run/nginx.pid'
