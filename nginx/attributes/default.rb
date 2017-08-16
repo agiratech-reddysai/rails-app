@@ -24,7 +24,7 @@
 # This attribute is in the source.rb file, though we recommend overriding
 # attributes by modifying a role, or the node itself.
 default['nginx']['version']      = '1.12.0'
-default['nginx']['package_name'] = 'nginx'
+default['nginx']['package_name'] = 'nginx-extras'
 default['nginx']['port']         = '80'
 default['nginx']['dir']          = '/etc/nginx'
 default['nginx']['script_dir']   = '/usr/sbin'
@@ -46,7 +46,7 @@ when 'debian'
 when 'rhel', 'fedora'
   default['nginx']['user']        = 'nginx'
   default['nginx']['init_style']  = 'init'
-  default['nginx']['repo_source'] = 'epel'
+  default['nginx']['repo_source'] = 'passenger'
 when 'gentoo'
   default['nginx']['user']       = 'nginx'
   default['nginx']['init_style'] = 'init'
@@ -117,7 +117,7 @@ default['nginx']['access_log_options']     = nil
 default['nginx']['error_log_options']      = nil
 default['nginx']['disable_access_log']     = false
 default['nginx']['log_formats']            = {}
-default['nginx']['install_method']         = 'source'
+default['nginx']['install_method']         = 'package'
 default['nginx']['default_site_enabled']   = true
 default['nginx']['types_hash_max_size']    = 2_048
 default['nginx']['types_hash_bucket_size'] = 64
