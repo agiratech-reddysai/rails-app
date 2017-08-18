@@ -25,7 +25,15 @@ when "centos"
     end
 
     execute 'epel-release' do
-      command 'yum install epel-release -y'
+      command 'yum install epel-release yum-utils -y'
+    end
+
+    execute 'enable epel' do
+      command 'yum-config-manager --enable epel'
+    end
+
+    execute 'pygpgme curl' do
+      command 'yum install -y pygpgme curl'
     end
 when "ubuntu"
     execute 'update' do
