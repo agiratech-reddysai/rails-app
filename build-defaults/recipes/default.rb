@@ -32,6 +32,10 @@ when "centos"
       command 'yum-config-manager --enable epel'
     end
 
+    execute '' do
+      command 'yum clean all && yum update -y'
+    end
+
     execute 'pygpgme curl' do
       command 'yum install -y pygpgme curl'
     end
