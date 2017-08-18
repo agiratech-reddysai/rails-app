@@ -56,3 +56,9 @@ node.default['nginx']['passenger']['gem_binary'] = nil
 node.default['nginx']['passenger']['install_method'] = 'package'
 # NodeJs disable by default
 node.default['nginx']['passenger']['nodejs'] = nil
+
+# attributes for nginx_passenger recipe
+node.default['nginx']['passenger']['root_location'] = '/usr/share/ruby/vendor_ruby/phusion_passenger/locations.ini'
+node.default['nginx']['passenger']['ruby_bin'] = '/usr/bin/ruby'
+node.default['nginx']['passenger']['registry_dir'] = '/var/run/passenger-instreg'
+
