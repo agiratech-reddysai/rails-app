@@ -1,31 +1,33 @@
 
-package 'Install nginx' do
-  case node[:platform]
-  when 'centos'
-    execute 'add out e17 yum repo' do
-      command 'curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo'
-    end
+
+case node[:platform]
+when 'centos'
+  execute 'add out e17 yum repo' do
+    command 'curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo'
+  end
+  package 'Install nginx' do
     package_name 'nginx'
     package_name 'passenger'
-  when 'ubuntu'
-    include_recipe 'apt'
-    package 'apt-transport-https'
+  end
+when 'ubuntu'
+  include_recipe 'apt'
+  package 'apt-transport-https'
 
-    apt_uri = node.nginx_passenger.use_passenger_4 ? "https://oss-binaries.phusionpassenger.com/apt/passenger/4" : "https://oss-binaries.phusionpassenger.com/apt/passenger"
+  apt_uri = node.nginx_passenger.use_passenger_4 ? "https://oss-binaries.phusionpassenger.com/apt/passenger/4" : "https://oss-binaries.phusionpassenger.com/apt/passenger"
 
-    apt_repository "phusion" do
-      action        :add
-      uri           apt_uri
-      distribution  node.lsb.codename
-      components    ['main']
-      keyserver     "hkp://keyserver.ubuntu.com:80"
-      key           "561F9B9CAC40B2F7"
-    end
+  apt_repository "phusion" do
+    action        :add
+    uri           apt_uri
+    distribution  node.lsb.codename
+    components    ['main']
+    keyserver     "hkp://keyserver.ubuntu.com:80"
+    key           "561F9B9CAC40B2F7"
+  end
 
-    package "nginx-common" do
-      options '-o DPkg::Options::="--force-confold"'
-    end
-
+  package "nginx-common" do
+    options '-o DPkg::Options::="--force-confold"'
+  end
+  package 'Install nginx' do
     package_name 'passenger'
     package_name 'nginx-extras'
   end
