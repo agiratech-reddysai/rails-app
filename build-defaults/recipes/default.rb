@@ -28,15 +28,15 @@ when "centos"
       command 'yum install epel-release yum-utils -y'
     end
 
-    execute 'enable epel' do
+    execute 'enable-epel' do
       command 'yum-config-manager --enable epel'
     end
 
-    execute '' do
+    execute 'clean-all' do
       command 'yum clean all && yum update -y'
     end
 
-    execute 'pygpgme curl' do
+    execute 'pygpgme-curl' do
       command 'yum install -y pygpgme curl'
     end
 when "ubuntu"
@@ -52,7 +52,7 @@ when "ubuntu"
       command 'apt-get install psmisc -y'
     end
 
-    execute 'dirmngr gnupg' do
+    execute 'dirmngr-gnupg' do
       command 'apt-get install -y dirmngr gnupg'
     end
 end
