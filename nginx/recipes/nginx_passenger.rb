@@ -5,10 +5,8 @@ when 'centos'
   execute 'add out e17 yum repo' do
     command 'curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo'
   end
-  package 'Install nginx' do
-    package_name 'nginx'
-    package_name 'passenger'
-  end
+  package 'nginx'
+  package 'passenger'
 when 'ubuntu'
   include_recipe 'apt'
   package 'apt-transport-https'
@@ -27,10 +25,8 @@ when 'ubuntu'
   package "nginx-common" do
     options '-o DPkg::Options::="--force-confold"'
   end
-  package 'Install nginx' do
-    package_name 'passenger'
-    package_name 'nginx-extras'
-  end
+  package 'nginx-extras'
+  package 'passenger'
 end
 
 service 'nginx' do
