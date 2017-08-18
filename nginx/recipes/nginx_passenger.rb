@@ -6,7 +6,7 @@ when 'centos'
     command 'curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo'
   end
   package 'nginx'
-  package 'passenger'
+  # package 'passenger'
 when 'ubuntu'
   include_recipe 'apt'
   package 'apt-transport-https'
