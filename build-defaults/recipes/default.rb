@@ -47,6 +47,10 @@ when "ubuntu"
     execute 'psmisc' do
       command 'apt-get install psmisc -y'
     end
+
+    execute 'dirmngr gnupg' do
+      command 'apt-get install -y dirmngr gnupg'
+    end
 end
 
 
