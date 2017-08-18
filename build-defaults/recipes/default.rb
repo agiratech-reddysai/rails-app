@@ -36,8 +36,11 @@ when "centos"
       command 'yum clean all && yum update -y'
     end
 
-    execute 'pygpgme-curl' do
-      command 'yum install -y pygpgme curl'
+    execute 'pygpgme' do
+      command 'yum install -y pygpgme'
+    end
+    execute 'curl' do
+      command 'yum install curl -y'
     end
 when "ubuntu"
     execute 'update' do
