@@ -273,6 +273,8 @@ EOSQL
         @pkginfo.set['debian']['14.04']['5.5']['client_package'] = %w(mysql-client-5.5 libmysqlclient-dev)
         @pkginfo.set['debian']['14.04']['5.5']['server_package'] = 'mysql-server-5.5'
         @pkginfo.set['debian']['14.04']['5.6']['client_package'] = %w(mysql-client-5.6 libmysqlclient-dev)
+        @pkginfo.set['debian']['16.04']['5.6']['server_package'] = 'mysql-server-5.6'
+        @pkginfo.set['debian']['16.04']['5.7']['client_package'] = %w(mysql-client-5.7 libmysqlclient-dev)
         @pkginfo.set['debian']['14.04']['5.6']['server_package'] = 'mysql-server-5.6'
         @pkginfo.set['debian']['14.10']['5.5']['client_package'] = %w(mysql-client-5.5 libmysqlclient-dev)
         @pkginfo.set['debian']['14.10']['5.5']['server_package'] = 'mysql-server-5.5'
