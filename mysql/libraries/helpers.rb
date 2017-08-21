@@ -453,6 +453,7 @@ EOSQL
       return '5.5' if node['platform_family'] == 'debian' && node['platform_version'] == '13.10'
       return '5.5' if node['platform_family'] == 'debian' && node['platform_version'] == '14.04'
       return '5.5' if node['platform_family'] == 'debian' && node['platform_version'] == '14.10'
+      return '5.7' if node['platform_family'] == 'debian' && node['platform_version'] == '16.04'
       return '5.5' if node['platform_family'] == 'debian' && node['platform_version'].to_i == 7
       return '5.5' if node['platform_family'] == 'debian' && node['platform_version'].to_i == 8
       return '5.5' if node['platform_family'] == 'freebsd'
