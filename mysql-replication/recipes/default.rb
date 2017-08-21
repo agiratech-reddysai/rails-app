@@ -19,7 +19,7 @@
 include_recipe 'yum-mysql-community::mysql57'
 # Configure the MySQL client.
 mysql_client 'default' do
-  version '5.7'
+  version ''
   action :create
 end
 
