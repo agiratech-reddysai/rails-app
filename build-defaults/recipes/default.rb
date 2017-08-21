@@ -8,10 +8,6 @@
 #
 case node['platform']
 when "centos"
-    # execute 'update' do
-    #   command 'yum update -y'
-    # end
-
     execute 'wget-tar' do
       command 'yum install wget -y && yum install tar -y'
     end
@@ -36,6 +32,14 @@ when "centos"
       command 'yum clean all && yum update -y'
     end
 
+    execute 'zlib-devel' do
+      command 'yum install zlib-devel -y'
+    end
+
+    execute 'openssl-static' do
+      command 'yum install openssl-static -y'
+    end
+
     execute 'pygpgme' do
       command 'yum install -y pygpgme'
     end
@@ -52,10 +56,6 @@ when "centos"
       command 'yum update -y'
     end
 when "ubuntu"
-    execute 'update' do
-      command 'apt-get update -y'
-    end
-
     execute 'wget-tar' do
       command 'apt-get install wget -y && apt-get install tar -y'
     end
@@ -66,6 +66,18 @@ when "ubuntu"
 
     execute 'dirmngr-gnupg' do
       command 'apt-get install -y dirmngr gnupg'
+    end
+
+    execute 'zlib1g-dev' do
+      command 'apt-get install zlib1g-dev -y'
+    end
+
+    execute 'libssl-dev' do
+      command 'apt-get install libssl-dev -y'
+    end
+
+    execute 'update' do
+      command 'apt-get update -y'
     end
 end
 
