@@ -2,10 +2,9 @@
 
 case node[:platform]
 when 'centos'
-  # package 'curl'
-  # execute 'add out e17 yum repo' do
-  #   command 'curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo'
-  # end
+  execute 'add out e17 yum repo' do
+    command 'curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo'
+  end
   package 'nginx'
   package 'passenger'
 when 'ubuntu'
