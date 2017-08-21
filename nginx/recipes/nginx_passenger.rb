@@ -8,18 +8,16 @@ when 'centos'
   package 'nginx'
   package 'passenger'
 when 'ubuntu'
-  include_recipe 'apt'
+  include_recipe 'apt::default'
   package 'apt-transport-https'
 
-  apt_uri = node.nginx_passenger.use_passenger_4 ? "https://oss-binaries.phusionpassenger.com/apt/passenger/4" : "https://oss-binaries.phusionpassenger.com/apt/passenger"
-
-  apt_repository "phusion" do
-    action        :add
-    uri           apt_uri
-    distribution  node.lsb.codename
-    components    ['main']
-    keyserver     "hkp://keyserver.ubuntu.com:80"
-    key           "561F9B9CAC40B2F7"
+  apt_repository 'phusionpassenger' do
+    uri 'https://oss-binaries.phusionpassenger.com/apt/passenger'
+    distribution node['lsb']['codename']
+    components %w(main)
+    deb_src true
+    keyserver 'keyserver.ubuntu.com'
+    key '561F9B9CAC40B2F7'
   end
 
   package "nginx-common" do
