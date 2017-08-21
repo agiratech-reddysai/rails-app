@@ -8,9 +8,9 @@
 #
 case node['platform']
 when "centos"
-    execute 'update' do
-      command 'yum update -y'
-    end
+    # execute 'update' do
+    #   command 'yum update -y'
+    # end
 
     execute 'wget-tar' do
       command 'yum install wget -y && yum install tar -y'
@@ -39,8 +39,17 @@ when "centos"
     execute 'pygpgme' do
       command 'yum install -y pygpgme'
     end
+
     execute 'curl' do
       command 'yum install curl -y'
+    end
+
+    execute 'add out e17 yum repo' do
+      command 'curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo'
+    end
+
+    execute 'update' do
+      command 'yum update -y'
     end
 when "ubuntu"
     execute 'update' do
