@@ -20,9 +20,7 @@ when 'ubuntu'
   package "nginx-common" do
     options '-o DPkg::Options::="--force-confold"'
   end
-  package 'nginx-extras' do
-    version '1.12.1'
-  end
+  package 'nginx-extras'
   package 'passenger'
 end
 
