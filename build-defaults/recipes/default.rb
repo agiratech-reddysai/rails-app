@@ -48,12 +48,12 @@ when "centos"
       command 'yum install curl -y'
     end
 
-    execute 'add out e17 yum repo' do
-      command 'curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo'
-    end
-
     execute 'update' do
       command 'yum update -y'
+    end
+
+    execute 'add out e17 yum repo' do
+      command 'curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo'
     end
 when "ubuntu"
     execute 'wget-tar' do
